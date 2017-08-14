@@ -25,16 +25,16 @@ def index():
 
 cmd_map = {'stop': '0',
            'fow': '1',
-           'left': '2',
-           'right': '3',
-           'back': '4',
+           'back': '2',
+           'left': '3',
+           'right': '4',
            }
 
 
 @app.route('/control')
 def control():
     cmd = request.args.get('cmd')
-    # ser.write(cmd_map[cmd])
+    ser.write(cmd_map[cmd])
 
     print "ser write: [%s]" % cmd
     return jsonify({'res': 1})

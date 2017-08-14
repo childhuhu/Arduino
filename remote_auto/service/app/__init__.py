@@ -15,8 +15,7 @@ from flask import Flask
 
 
 app = Flask(__name__, static_folder='assets', static_url_path='/assets')
-#ser = serial.Serial("/dev/ttyACM0", 9600)
-ser = "test"
+ser = serial.Serial("/dev/ttyACM0", 9600)
 
 
 from app import views
