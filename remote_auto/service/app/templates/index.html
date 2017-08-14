@@ -7,7 +7,7 @@
   <meta name="keywords" content="">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
-  <title>Amaze UI Examples</title>
+  <title>Remote Controller</title>
 
   <!-- Set render engine for 360 browser -->
   <meta name="renderer" content="webkit">
@@ -54,20 +54,11 @@ function SendCmd(cmd) {
     $.get(url);
 }
 $(document).ready(function() {
-//$('button#fow').mousedown(function(){SendCmd('fow')});
-//$('button#back').mousedown(function(){SendCmd('back')});
-//$('button#light').mousedown(function(){SendCmd('left')});
-//$('button#right').mousedown(function(){SendCmd('right')});
-//$("button").mouseup(function(){SendCmd('stop')});
-
-var Hammer = $.AMUI.Hammer;
-var hammertime = new Hammer($('button#fow'));
-hammertime.on('press', function(){alert('fow')});
-$('button#fow').hammer().on('press', function(){alert('fow')});
+$('button#fow').hammer().on('press', function(){SendCmd('fow')});
 $('button#back').hammer().on('press', function(){SendCmd('back')});
 $('button#left').hammer().on('press', function(){SendCmd('left')});
 $('button#right').hammer().on('press', function(){SendCmd('right')});
-$('button#right').hammer().on('pressup', function(){SendCmd('stop')});
+$('button').hammer().on('pressup', function(){SendCmd('stop')});
 });
 window.onresize = function() {
     ChangeFrameSize();
