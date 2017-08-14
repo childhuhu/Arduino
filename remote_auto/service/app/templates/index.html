@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>Amaze UI Examples</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+  <!--
+  <link rel="canonical" href="http://www.example.com/">
+  -->
+
+  <link rel="stylesheet" href="assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="assets/js/jquery.min.js"></script>
+  <!--<![endif]-->
+  <script src="assets/js/amazeui.min.js"></script>
+  <script>
+function ChangeFrameSize() {
+    var ifm = document.getElementById("stream");
+    ifm.height = document.documentElement.clientHeight;
+    ifm.width = document.documentElement.clientWidth;
+}
+
+function SendCmd(cmd) {
+    var url = '/control?cmd=' + cmd;
+    $.get(url);
+}
+$(document).ready(function() {
+//$('button#fow').mousedown(function(){SendCmd('fow')});
+//$('button#back').mousedown(function(){SendCmd('back')});
+//$('button#light').mousedown(function(){SendCmd('left')});
+//$('button#right').mousedown(function(){SendCmd('right')});
+//$("button").mouseup(function(){SendCmd('stop')});
+
+var Hammer = $.AMUI.Hammer;
+var hammertime = new Hammer($('button#fow'));
+hammertime.on('press', function(){alert('fow')});
+$('button#fow').hammer().on('press', function(){alert('fow')});
+$('button#back').hammer().on('press', function(){SendCmd('back')});
+$('button#left').hammer().on('press', function(){SendCmd('left')});
+$('button#right').hammer().on('press', function(){SendCmd('right')});
+$('button#right').hammer().on('pressup', function(){SendCmd('stop')});
+});
+window.onresize = function() {
+    ChangeFrameSize();
+}
+  </script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<!-- 页面内容 开发时删除 -->
+<div class="am-g am-g-fixed am-margin-top">
+  <div class="am-u-sm-12">
+    <h1>Auto Controller</h1>
+  </div>
+</div>
+<div class="am-g am-g-fixed">
+  <div class="am-u-sm-4 am-u-sm-centered">
+      <button type="button" id="fow" class="am-btn am-btn-primary am-round am-btn-xl am-btn-block">前进</button>
+  </div>
+</div>
+<br />
+<br />
+<div class="am-g am-g-fixed">
+  <div class="am-u-sm-4">
+      <button type="button" id="left" class="am-btn am-btn-primary am-round am-btn-xl am-btn-block">左转</button>
+  </div>
+  <div class="am-u-sm-4">
+      <button type="button" id="right" class="am-btn am-btn-primary am-round am-btn-xl am-btn-block">右转</button>
+  </div>
+</div>
+<br />
+<br />
+<div class="am-g am-g-fixed">
+  <div class="am-u-sm-4 am-u-sm-centered">
+      <button type="button" id="back" class="am-btn am-btn-primary am-round am-btn-xl am-btn-block">后退</button>
+  </div>
+</div>
+<div class="am-g am-g-fixed">
+<br />
+<br />
+<div class="am-g-fixed am-u-sm-centered">
+<iframe src="http://www.baidu.com" scrolling="no" id="stream" onload="ChangeFrameSize()"></iframe>
+</div>
+</div>
+<!-- 以上页面内容 开发时删除 -->
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+</body>
+</html>
